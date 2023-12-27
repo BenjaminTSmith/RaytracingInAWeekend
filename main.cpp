@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include "vec3.h"
+#include "color.h"
 
 int main() {
     std::ofstream output("image.ppm");
@@ -12,15 +14,8 @@ int main() {
     for (int j = 0; j < imageHeight; ++j) {
         std::cout << "\rScanlines remaining: " << imageHeight - j << ' ' << std::flush;
         for (int i = 0; i < imageWidth; ++i) {
-            auto r = double(i) / (imageWidth-1);
-            auto g = double(j) / (imageHeight-1);
-            auto b = 0;
-
-            int ir = static_cast<int>(255.999 * r);
-            int ig = static_cast<int>(255.999 * g);
-            int ib = static_cast<int>(255.999 * b);
-
-            output << ir << ' ' << ig << ' ' << ib << '\n';
+            auto pixel_color = color((double)i / (imageWidth - 1), (double)j / (imageHeight - 1), 0);
+            write_color(output, pixel_color);
         }
     }
 
