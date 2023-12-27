@@ -12,7 +12,16 @@ public:
     double y() const;
     double z() const;
 
+    vec3 operator-() const;
+    double operator[](int i) const;
+    double& operator[](int i);
 
+    vec3& operator+=(const vec3 &vector);
+    vec3& operator*=(double t);
+    vec3& operator/=(double t);
+
+    double length() const;
+    double length_squared() const;
 };
 
 
